@@ -28,6 +28,7 @@ public class GunShooting : MonoBehaviour
         if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger, OVRInput.Controller.RTouch))
         {
             isShooting = true;
+            Debug.Log("Shoot");
         }
 
         if (OVRInput.GetUp(OVRInput.Button.PrimaryIndexTrigger, OVRInput.Controller.RTouch))
