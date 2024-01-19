@@ -1204,10 +1204,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a04fad3bfd5c9e468efb4dc521ac1e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 4544847766168360949, guid: 8f22df8a8860a51449f4a74285d783ac, type: 3}
-  speed: 3
-  amplitude: 3
-  frequency: 2
+  target: {fileID: 5075429679070691731, guid: 2f92306ff10591742becd9a714b862ef, type: 3}
+  speed: 10
+  amplitude: 2
+  frequency: 1
 --- !u!65 &-1734001423628518533
 BoxCollider:
   m_ObjectHideFlags: 0

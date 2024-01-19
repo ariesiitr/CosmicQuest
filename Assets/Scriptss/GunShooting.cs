@@ -1,69 +1,69 @@
-// GunShooting.cs
-
 using UnityEngine;
-using OculusSampleFramework;
 
 public class GunShooting : MonoBehaviour
 {
-    public Material laserMaterial;
-    public float laserWidth = 0.02f;
-    public float laserMaxLength = 20f;
+    public Transform gunEnd; // The position where the laser will originate
+    public float gunRange = 50f; // The range of the laser
+    public LineRenderer laserLine; // LineRenderer for the visual representation of the laser
+    public float laserDuration = 0.5f; // Duration of the laser
 
-    private LineRenderer laserLine;
-    private bool isShooting = false;
-
-    void Start()
-    {
-        // Create a Line Renderer component for the laser
-        laserLine = gameObject.AddComponent<LineRenderer>();
-        laserLine.material = laserMaterial;
-        laserLine.startWidth = laserWidth;
-        laserLine.endWidth = laserWidth;
-        laserLine.useWorldSpace = true;
-    }
+    private float nextShootTime = 0f; // Time when the next shot can be fired
 
     void Update()
     {
         // Check if the trigger button is pressed on the right controller
-        if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger, OVRInput.Controller.RTouch))
+        if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger, OVRInput.Controller.RTouch) && Time.time > nextShootTime)
         {
-            isShooting = true;
-            Debug.Log("Shoot");
-        }
-
-        if (OVRInput.GetUp(OVRInput.Button.PrimaryIndexTrigger, OVRInput.Controller.RTouch))
-        {
-            isShooting = false;
-            laserLine.positionCount = 0; // Clear the laser when not shooting
-        }
-
-        // If shooting, update the laser beam
-        if (isShooting)
-        {
-            UpdateLaserBeam();
+            ShootLaser();
         }
     }
 
-    void UpdateLaserBeam()
+    void ShootLaser()
     {
-        RaycastHit hit;
-        Vector3 startPoint = transform.position;
-        Vector3 forwardDirection = transform.forward;
+        // Set the starting point of the laser at the gunEnd position
+        laserLine.SetPosition(0, gunEnd.position);
 
-        // Cast a ray to detect the hit point
-        if (Physics.Raycast(startPoint, forwardDirection, out hit, laserMaxLength))
+        // Create a ray from the gunEnd position in the forward direction
+        Ray ray = new Ray(gunEnd.position, gunEnd.forward);
+        RaycastHit hit;
+
+        // Check if the ray hits something within the gunRange
+        if (Physics.Raycast(ray, out hit, gunRange))
         {
-            // If hit, set the end point of the laser to the hit point
-            laserLine.positionCount = 2;
-            laserLine.SetPosition(0, startPoint);
+            // Set the end point of the laser at the hit point
             laserLine.SetPosition(1, hit.point);
+
+            // Perform actions based on the hit object (you can customize this part)
+            HandleHitObject(hit.collider.gameObject);
+            Destroy(hit.transform.gameObject);
         }
         else
         {
-            // If not hit, set the end point of the laser to the maximum length
-            laserLine.positionCount = 2;
-            laserLine.SetPosition(0, startPoint);
-            laserLine.SetPosition(1, startPoint + forwardDirection * laserMaxLength);
+            // If the ray doesn't hit anything, set the end point to the maximum range
+            laserLine.SetPosition(1, gunEnd.position + gunEnd.forward * gunRange);
         }
+
+        // Activate the LineRenderer
+        laserLine.enabled = true;
+
+        // Schedule the deactivation of the LineRenderer after the specified duration
+        nextShootTime = Time.time + laserDuration;
+
+        // Deactivate the LineRenderer after the specified duration
+        Invoke("DeactivateLaser", laserDuration);
+    }
+
+    void DeactivateLaser()
+    {
+        // Deactivate the LineRenderer
+        laserLine.enabled = false;
+    }
+
+    void HandleHitObject(GameObject hitObject)
+    {
+        // Add your logic here based on the hit object
+        // For example, you can destroy the object, apply damage, etc.
+        // For now, let's just print the name of the hit object.
+        Debug.Log("Hit: " + hitObject.name);
     }
 }
