@@ -1262,8 +1262,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 5075429679070691731, guid: 2f92306ff10591742becd9a714b862ef, type: 3}
-  speed: 10
-  amplitude: 2
+  speed: 20
+  amplitude: 1.5
   frequency: 1
 --- !u!65 &3194618230568458944
 BoxCollider:

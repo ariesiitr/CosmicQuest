@@ -9,7 +9,7 @@ public class Blaster : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-     InvokeRepeating("SpawnRandom",0.5f,3f);   
+     InvokeRepeating("SpawnRandom",0.5f,1.75f);   
     }
 
     // Update is called once per frame

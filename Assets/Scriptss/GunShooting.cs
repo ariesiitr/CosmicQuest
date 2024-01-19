@@ -1,7 +1,9 @@
+using System;
 using UnityEngine;
 
 public class GunShooting : MonoBehaviour
 {
+    public GameObject Explosionprfab;
     public Transform gunEnd; // The position where the laser will originate
     public float gunRange = 50f; // The range of the laser
     public LineRenderer laserLine; // LineRenderer for the visual representation of the laser
@@ -35,7 +37,13 @@ public class GunShooting : MonoBehaviour
 
             // Perform actions based on the hit object (you can customize this part)
             HandleHitObject(hit.collider.gameObject);
-            Destroy(hit.transform.gameObject);
+            if(hit.transform.gameObject.CompareTag("MainCamera")){
+
+            }
+            else
+            {Destroy(hit.transform.gameObject);
+                Explosion(hit);
+            }
         }
         else
         {
@@ -66,4 +74,28 @@ public class GunShooting : MonoBehaviour
         // For now, let's just print the name of the hit object.
         Debug.Log("Hit: " + hitObject.name);
     }
+    // void Explosion(RaycastHit hit){
+    //     Instantiate(Explosionprfab,hit.transform.position,Quaternion.identity);
+    //     Invoke("DestroyExplosionPrfab",1f);
+    // }
+    // void DestroyExplosionPrfab(){
+    //     Destroy(Explosionprfab.gameObject);
+    // } // Assign your explosion prefab in the Unity Editor
+void Explosion(RaycastHit hit)
+{
+    // Instantiate the explosion prefab and store the reference to the instance
+    Instantiate(Explosionprfab, hit.transform.position, Quaternion.identity);
+
+    // // Invoke the method to destroy the instantiated explosion after 1 second
+    // Invoke("DestroyExplosionPrfab", 1f);
+}
+
+// void DestroyExplosionPrfab(GameObject explosionInstance)
+// {
+//     // Check if the explosion instance is not null before destroying it
+//     if (explosionInstance != null)
+//     {
+//         Destroy(explosionInstance);
+//     }
+// }
 }
