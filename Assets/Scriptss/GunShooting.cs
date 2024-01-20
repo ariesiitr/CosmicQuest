@@ -37,7 +37,7 @@ public class GunShooting : MonoBehaviour
 
             // Perform actions based on the hit object (you can customize this part)
             HandleHitObject(hit.collider.gameObject);
-            if(hit.transform.gameObject.CompareTag("MainCamera")){
+            if(hit.transform.gameObject.CompareTag("MainCamera")|| hit.transform.gameObject.CompareTag("Player")){
 
             }
             else

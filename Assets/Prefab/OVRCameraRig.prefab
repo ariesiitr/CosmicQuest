@@ -856,6 +856,22 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3832703582600944452, guid: bceefb2a39f6db74d9bc9d006687b7f1, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 3832703582600944452, guid: bceefb2a39f6db74d9bc9d006687b7f1, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 3832703582600944452, guid: bceefb2a39f6db74d9bc9d006687b7f1, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3832703582600944452, guid: bceefb2a39f6db74d9bc9d006687b7f1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
+      objectReference: {fileID: 0}
     - target: {fileID: 3832703582600972128, guid: bceefb2a39f6db74d9bc9d006687b7f1, type: 3}
       propertyPath: m_Name
       value: Gun
@@ -865,6 +881,11 @@ PrefabInstance:
 --- !u!4 &8313631703657636810 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3832703582600944448, guid: bceefb2a39f6db74d9bc9d006687b7f1, type: 3}
+  m_PrefabInstance: {fileID: 5075429677934033034}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &8313631703657636814 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3832703582600944452, guid: bceefb2a39f6db74d9bc9d006687b7f1, type: 3}
   m_PrefabInstance: {fileID: 5075429677934033034}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &8313631703658135530 stripped
@@ -884,9 +905,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e7ca735aff6fab45805ded6ac6aaa7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  laserMaterial: {fileID: 2100000, guid: 14fab0de6c54324468738e7b38a88207, type: 2}
-  laserWidth: 0.02
-  laserMaxLength: 20
+  Explosionprfab: {fileID: 1845955007268882, guid: 67a684e320da6e7439421a07e3fa265c, type: 3}
+  gunEnd: {fileID: 8313631703657636814}
+  gunRange: 50
+  laserLine: {fileID: 0}
+  laserDuration: 0.5
 --- !u!1001 &5075429678841464693
 PrefabInstance:
   m_ObjectHideFlags: 0

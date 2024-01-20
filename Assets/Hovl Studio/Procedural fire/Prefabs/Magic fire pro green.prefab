@@ -14487,6 +14487,7 @@ GameObject:
   - component: {fileID: 198198661817966188}
   - component: {fileID: 199569250843235242}
   - component: {fileID: -5224640221837706776}
+  - component: {fileID: 2425220788578049704}
   m_Layer: 0
   m_Name: Magic fire pro green
   m_TagString: Untagged
@@ -19318,6 +19319,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 50
+--- !u!65 &2425220788578049704
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1518366863219760}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1943880830992744
 GameObject:
   m_ObjectHideFlags: 0
