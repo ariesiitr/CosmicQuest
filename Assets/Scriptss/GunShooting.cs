@@ -8,9 +8,11 @@ public class GunShooting : MonoBehaviour
     public float gunRange = 50f; // The range of the laser
     public LineRenderer laserLine; // LineRenderer for the visual representation of the laser
     public float laserDuration = 0.5f; // Duration of the laser
-
+    ScoreManager scoreManager;
     private float nextShootTime = 0f; // Time when the next shot can be fired
-
+     private void Start() {
+        scoreManager= GameObject.Find("ScoreManager").GetComponent<ScoreManager>();
+    }
     void Update()
     {
         // Check if the trigger button is pressed on the right controller
@@ -41,7 +43,9 @@ public class GunShooting : MonoBehaviour
 
             }
             else
-            {Destroy(hit.transform.gameObject);
+            {
+                scoreManager.AddScore();
+                Destroy(hit.transform.gameObject);
                 Explosion(hit);
             }
         }
@@ -74,28 +78,20 @@ public class GunShooting : MonoBehaviour
         // For now, let's just print the name of the hit object.
         Debug.Log("Hit: " + hitObject.name);
     }
-    // void Explosion(RaycastHit hit){
-    //     Instantiate(Explosionprfab,hit.transform.position,Quaternion.identity);
-    //     Invoke("DestroyExplosionPrfab",1f);
-    // }
-    // void DestroyExplosionPrfab(){
-    //     Destroy(Explosionprfab.gameObject);
-    // } // Assign your explosion prefab in the Unity Editor
+
 void Explosion(RaycastHit hit)
 {
-    // Instantiate the explosion prefab and store the reference to the instance
+
     Instantiate(Explosionprfab, hit.transform.position, Quaternion.identity);
 
-    // // Invoke the method to destroy the instantiated explosion after 1 second
-    // Invoke("DestroyExplosionPrfab", 1f);
+    
+}
+public void Explosion2(Vector3 position)
+{
+
+    Instantiate(Explosionprfab, position, Quaternion.identity);
+
+    
 }
 
-// void DestroyExplosionPrfab(GameObject explosionInstance)
-// {
-//     // Check if the explosion instance is not null before destroying it
-//     if (explosionInstance != null)
-//     {
-//         Destroy(explosionInstance);
-//     }
-// }
 }

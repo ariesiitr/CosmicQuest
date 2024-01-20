@@ -9,10 +9,12 @@ public class Motion : MonoBehaviour
     public float amplitude = 5.0f;
     public float frequency = 5.0f;
     private Vector3 initialPosition;
+    GunShooting gunShooting;
 
     void Start()
     {
         initialPosition = transform.position;
+        gunShooting=GameObject.Find("Gun").GetComponent<GunShooting>();
     }
 
     void Update()
@@ -39,6 +41,7 @@ private void OnCollisionEnter(Collision collision)
     {
         Debug.Log("Destroying object!");
         Destroy(gameObject);
+        gunShooting.Explosion2(transform.position);
     }
 }
 
